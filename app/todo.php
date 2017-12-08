@@ -12,13 +12,13 @@ class todo extends Model
     //model bata pass hunu parxa 
 
   // look get method this is accessor
-  /*  public function getBodyAttribute($value)
+    public function getTitleAttribute($value)
     {
     	return ucfirst($value);
     }
 */
-    public function setBodyAttribute($value)
+    public function setTitleAttribute($value)
     {
-    	return $this->attributes['body']=ucfirst($value);
+    	return $this->attributes['title']=ucfirst($value);
     }
 }
