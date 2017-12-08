@@ -35,7 +35,7 @@ class todocontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

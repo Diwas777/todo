@@ -12,7 +12,7 @@
 <fieldset>
 	  	<div class="form-group">
 	      <br>
-	      <textarea class="form-control" id="exampleTextarea" rows="3" name="body"></textarea>
+	      <textarea class="form-control" id="Textarea" rows="3" name="body"></textarea>
 	      <br>
 	      <button type="submit" class="btn btn-success">Submit</button>
 	    </div>
