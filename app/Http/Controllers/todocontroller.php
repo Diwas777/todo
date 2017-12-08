@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\todo;
+//to store data we have to use model as data passes via model
 
 class todocontroller extends Controller
 {
@@ -14,7 +16,10 @@ class todocontroller extends Controller
     public function index()
     {
 
-    return view('todo.home');
+    //return view('todo.home');
+    //todo is name of table and takeouting all data from table todo sending that data to home page via compact and in home page it is displaying via foreach loop
+        $todos=todo::all();
+        return view('todo.home',compact('todos'));
     }
 
     /**
@@ -34,8 +39,22 @@ class todocontroller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        
+    {  
+        //on clicking on add new create function will be called and when clicked on submit 
+        //then this function will be called
+    //to store we use model as
+        //use App/todo donot write todo.php
+        //for this request also 
+        //we have used use Illuminate\Http\Request;
+        //return $request->all();
+
+
+        $todo=new todo;
+        $this->validate($request,['body'=>'required|unique:todos',]);
+        $todo->body=$request->body;
+        $todo->save(); 
+        return redirect('/todo');
+
     }
 
     /**
@@ -46,7 +65,7 @@ class todocontroller extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

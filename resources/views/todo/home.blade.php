@@ -7,10 +7,15 @@
 	<a href="todo/create" class="btn btn-info">Add New</a>
 	<center><h1 >Todo Lists</h1></center>
 	<ul class="list-group">
+		@foreach($todos as $todo)
 		<li class="list-group-item">
+			{{$todo->body}} {{--this body is getBodyAttribute()--}}
+
+		<span class="pull-right">	{{$todo->created_at->diffforhumans()}}
+		</span>
 			
-			This is first item
 		</li>
+			@endforeach
 	</ul>
 </div>
 @endsection  {{-- donot write @show here because here we are using it--}}
