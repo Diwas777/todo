@@ -16,7 +16,7 @@ class todo extends Model
     {
     	return ucfirst($value);
     }
-*/
+
     public function setTitleAttribute($value)
     {
     	return $this->attributes['title']=ucfirst($value);

@@ -9,8 +9,8 @@
 	<ul class="list-group">
 		@foreach($todos as $todo)
 		<li class="list-group-item">
-			{{$todo->title}} {{--this body is getBodyAttribute()--}}
-
+		<a href="{{'/todo/'.$todo->id}} ">	{{$todo->title}} {{--this body is getBodyAttribute()--}}
+		</a>
 		<span class="pull-right">	{{$todo->created_at->diffforhumans()}}
 		</span>
 			
