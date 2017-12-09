@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\todo;
-//to store data we have to use model as data passes via model
+//to store data we have to use model(todo.php) as data passes via model
 
 class todocontroller extends Controller
 {
@@ -52,8 +52,7 @@ class todocontroller extends Controller
         $todo=new todo;
         $this->validate($request,[
             'title'=>'required|unique:todos',
-            'body'=>'required',
-            
+            'body'=>'required',            
         ]);
         $todo->body=$request->body;
         $todo->title=$request->title;
@@ -72,7 +71,7 @@ class todocontroller extends Controller
     {
         
         //return $id;
-        $item=todo::find($id);
+        $item=todo::find($id); //find this id in db then show to view
         return view('todo.show',compact('item'));
     }
 
@@ -83,8 +82,8 @@ class todocontroller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {    $item=todo::find($id);
+         return view('todo.edit',compact('item'));
     }
 
     /**
@@ -96,7 +95,17 @@ class todocontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $todos=todo::find($id);
+        $this->validate($request,[
+            'title'=>'required',
+            'body'=>'required',
+            
+        ]);
+        $todos->body=$request->body;
+        $todos->title=$request->title;
+        $todos->save(); 
+        session()->flash('message','updated successfully');
+        return redirect('/todo');
     }
 
     /**
@@ -107,6 +116,9 @@ class todocontroller extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        $item=todo::find($id); //this todo is model
+        $item->delete();
+        session()->flash('message','deleted successfully');
+        return redirect('/todo');
+    } 
 }
